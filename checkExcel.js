@@ -3,11 +3,11 @@ const x4n = require('excel4node');
 const wb = new x4n.Workbook();
 const ws = wb.addWorksheet('Sheet 1');
 
-tipo =['BOLA', 'BOLA CON AGUJERO CARACTERÍSTICO', 'COMPUERTA', 'CORTINA', 'GLOBO', 'MARIPOSA']
-diametros = [ '1/4"', '3/8"','1/2"', '3/4"','1"', '1-1/4"','1-1/2"', '2"', '2-1/2"', '3"', '4"']
-clases = ['CLASE 150', 'CLASE 300', 'CLASE 600']
+tipo =['BOLA', 'BOLA CON AGUJERO CARACTERISTICO', 'COMPUERTA', 'CORTINA', 'GLOBO', 'MARIPOSA','PISTON']
+clases= [ 'PN10', 'PN16','PN40', 'PN25','PN32']
+diametros = ['N10', 'N15', 'N2O', 'N25', 'N3O', 'N35', 'N40', 'N45', 'N50', 'N55', 'N60', 'N65', 'N70', 'N75']
 conexiones = ['ROSCADA BSSP', 'ROSCADA NPT-M', 'SOLDABLE', 'ROSCADA BSP', 'ROSCADA BSF']
-materiales = [ 'ACERO AL CARBONO','ACERO GALVANIZADO', 'ACERO INOX', 'BRONCE', 'LATÓN' ];
+materiales = [ 'ACERO AL CARBONO','ACERO GALVANIZADO', 'ACERO INOXIDABLE', 'BRONCE', 'LATON' ];
 
 let rowCounter = 1;
 tipo.forEach((tipo) => {
@@ -27,9 +27,4 @@ tipo.forEach((tipo) => {
     });
 });
 
-wb.write('permutations.xlsx');
-
-// for(let i = 0; i < titles.length; i++){
-//     ws.cell(i+1,1).number(titles[i]);
-//     ws.cell(i+1,2).string(descs[i]);
-// }
+wb.write('permutationsMetrica.xlsx');
