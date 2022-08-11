@@ -10,11 +10,11 @@ let workBook = new x4n.Workbook();
 let workSheet = workBook.addWorksheet('Correas');
 
 ( async ()=>{
-    const browser = await pptr.launch();
+    const browser = await pptr.launch(); //{ headless: false }
     let page = await browser.newPage(); 
     
-    for(let pgN = 1; pgN <= 3; pgN++){
-        let url = `https://www.gprindustrial.com/es/557-correa-en-v-tipo-e?order=product.price.asc&page=${pgN}`;
+    for(let pgN = 1; pgN <= 159; pgN++){
+        let url = `https://www.gprindustrial.com/es/341-correas-de-tiempo-tipo-8m?order=product.price.asc&page=${pgN}`;
         await page.goto(url, {waitUntil: "domcontentloaded"});
         
         let { titles,descs } = await page.evaluate(()=>{
@@ -25,7 +25,7 @@ let workSheet = workBook.addWorksheet('Correas');
         console.log('evaluate > ',pgN,' > ',performance.now()-begTime);
         allTitles.push(...titles);
         allDescriptions.push(...descs);
-        await page.waitForTimeout(10000);
+        await page.waitForTimeout(1000);
     };
     
     browser.close();
@@ -35,5 +35,5 @@ let workSheet = workBook.addWorksheet('Correas');
         workSheet.cell(i+1,2).string(allDescriptions[i]);
     }
     
-    workBook.write('belts-V-E.xlsx');
+    workBook.write('belts- TIMING - 8M.xlsx');
 })();
