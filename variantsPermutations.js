@@ -87,6 +87,81 @@ function permutarTuercasANSI(){
 
 function permutarTuercasISO(){
 
+    const wb = new x4n.Workbook();
+    const ws = wb.addWorksheet('Tuercas');
+
+    let diam = ['3mm','4mm','5mm','6mm','7mm','8mm','10mm','12mm','14mm','16mm','18mm','20mm','22mm','24mm','27mm','30mm','33mm','36mm','39mm','42mm','45mm','48mm','52mm','56mm','60mm','64mm']
+
+
+    let paso = {
+        '3mm':[0.5],
+        '4mm':[0.7],
+        '5mm':[0.8],
+        '6mm':[1],
+        '7mm':[1],
+        '8mm':[1, 1.25, 1.5],
+        '10mm':[1.25, 1.5],
+        '12mm':[1.5, 1.75],
+        '14mm':[1.5, 1.75, 2],
+        '16mm':[1.5, 1.75, 2],
+        '18mm':[1.5, 1.75, 2, 2.5],
+        '20mm':[2.5],
+        '22mm':[2.5],
+        '24mm':[2.5],
+        '27mm':[3],
+        '30mm':[3, 3.5],
+        '33mm':[3.5],
+        '36mm':[4],
+        '39mm':[4],
+        '42mm':[4.5],
+        '45mm':[4.5],
+        '48mm':[5],
+        '52mm':[5],
+        '56mm':[5.5],
+        '60mm':[5.5],
+        '64mm':[6]
+    };
+    let thick = ["PESADA", "LIVIANA"];
+    let material = ["Acero al carbono","Acero inoxidable A304","Acero inoxidable A316","Aluminio","Bronce","Cobre"];
+    let grado = ["12.9","2","5","6.8","8","8.8"];
+    let acabado = ["CROMADO","GALVANIZADO EN CALIENTE","GALVANIZADO EN FRIO","PAVONADO","TROPICALIZADO","ZINCADO"];
+    
+    let rowCounter = 1;
+    diam.forEach((diam) => {
+        paso[diam].forEach((paso) => {
+            thick.forEach((thick) => {
+                material.forEach((mat) => {
+                    ws.cell(rowCounter, 1).string(diam);
+                    ws.cell(rowCounter, 2).number(paso);
+                    ws.cell(rowCounter, 3).string(thick);
+                    ws.cell(rowCounter, 4).string(mat);
+                            
+                    if(mat == "Acero al carbono"){
+                        grado.forEach((grado) => {
+                            ws.cell(rowCounter, 1).string(diam);
+                            ws.cell(rowCounter, 2).number(paso);
+                            ws.cell(rowCounter, 3).string(thick);
+                            ws.cell(rowCounter, 4).string(mat);
+                            ws.cell(rowCounter, 5).string(grado);
+                            rowCounter++;
+                        });
+                        acabado.forEach((acab) => {
+                            ws.cell(rowCounter, 1).string(diam);
+                            ws.cell(rowCounter, 2).number(paso);
+                            ws.cell(rowCounter, 3).string(thick);
+                            ws.cell(rowCounter, 4).string(mat);
+                            ws.cell(rowCounter, 6).string(acab);
+                            rowCounter++;
+                        });
+                        rowCounter--;
+                    }
+                    rowCounter++;
+                } );
+            } );
+        } );
+    } );
+
+    wb.write('permutacionTuercasMetricas.xlsx');
     
 }
 
