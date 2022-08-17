@@ -10,7 +10,7 @@ let workBook = new x4n.Workbook();
 let workSheet = workBook.addWorksheet('Correas');
 
 ( async ()=>{
-    const browser = await pptr.launch(); //{ headless: false }
+    const browser = await pptr.launch({ headless: false }); //{ headless: false }
     let page = await browser.newPage(); 
     
     for(let pgN = 1; pgN <= 20; pgN++){

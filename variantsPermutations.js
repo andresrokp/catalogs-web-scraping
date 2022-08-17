@@ -165,4 +165,14 @@ function permutarTuercasISO(){
     
 }
 
-permutarTuercasISO()
+(()=>{
+    /*
+    diams:
+    
+    */
+    let diams_metric = [1.6,2,2.5,3,3.5,4,5,6,8,10,12,14,16,18,20,22,24,27,30,33,36,39,42,45,48,52,56,60,64];
+    let diams_ansi = ['1/4"','5/16"','3/8"','7/16"','1/2"','9/16"','5/8"','3/4"','7/8"','1"','1-1/8"','1-1/4"','1-1/2"','3/16"','1/4"','1-3/8"','1-5/8"','1-3/4"','1-7/8"','2"','2-1/2"','3"'];
+    let diams = diams_ansi.concat(diams_metric);
+    let tipos = ['AUTOSELLANTE','AVELLANADA','CONICA','DE HOMBRO','DE SEGURIDAD CON SOLAPA','DENTADA','EN CUÑA','ESFERICA','GROWER','ONDULADA','PLANA','RANURADA']
+    material = ['ACERO AL CARBONO','ACERO INOXIDABLE (A304)','ACERO INOXIDABLE (A316)','ALUMINIO','COBRE','GAUCHO','LATON','NYLON','PLASTICO','TEFLON','TITANIO','ZINC'];
+})()
