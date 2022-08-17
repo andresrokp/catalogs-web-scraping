@@ -3,7 +3,7 @@ const x4n = require('excel4node');
 function permutarTornillos(){
 
     const wb = new x4n.Workbook();
-    const ws = wb.addWorksheet('Sheet 1');
+    const ws = wb.addWorksheet('Valvulas');
 
     tipo =['BOLA', 'BOLA CON AGUJERO CARACTERISTICO', 'COMPUERTA', 'CORTINA', 'GLOBO', 'MARIPOSA','PISTON']
     clases= [ 'PN10', 'PN16','PN40', 'PN25','PN32']
@@ -35,7 +35,7 @@ function permutarTornillos(){
 function permutarTuercasANSI(){
 
     const wb = new x4n.Workbook();
-    const ws = wb.addWorksheet('Sheet 1');
+    const ws = wb.addWorksheet('Tuercas');
 
     let ANSI_diam = ['1/4"','5/16"','3/8"','7/16"','1/2"','9/16"','5/8"','3/4"','7/8"','1"','1-1/8"','1-1/4"','1-5/16"','1-3/8"','1-7/16"','1-1/2"','1-9/16"','1-5/8"','1-3/4"','1-7/8"','2"','2-1/8"','2-1/4"','2-5/16"','2-3/8"','2-7/16"','2-1/2"','2-9/16"','2-5/8"','2-3/4"','2-7/8"','3"','3-1/8"','3-1/4"','3-5/16"','3-3/8"','3-7/16"','3-1/2"','3-9/16"','3-5/8"','3-3/4"','3-7/8"','4"','4-1/8"','4-1/4"','4-5/16"','4-3/8"','4-7/16"','4-1/2"','4-9/16"','4-5/8"','4-3/4"','4-7/8"','5"'];
         

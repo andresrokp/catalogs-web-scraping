@@ -13,8 +13,8 @@ let workSheet = workBook.addWorksheet('Correas');
     const browser = await pptr.launch(); //{ headless: false }
     let page = await browser.newPage(); 
     
-    for(let pgN = 1; pgN <= 159; pgN++){
-        let url = `https://www.gprindustrial.com/es/341-correas-de-tiempo-tipo-8m?order=product.price.asc&page=${pgN}`;
+    for(let pgN = 1; pgN <= 20; pgN++){
+        let url = `https://www.gprindustrial.com/es/4906-dura-absolute-torque-at10-timing-belts?order=product.price.asc&page=${pgN}`;
         await page.goto(url, {waitUntil: "domcontentloaded"});
         
         let { titles,descs } = await page.evaluate(()=>{
@@ -35,5 +35,5 @@ let workSheet = workBook.addWorksheet('Correas');
         workSheet.cell(i+1,2).string(allDescriptions[i]);
     }
     
-    workBook.write('belts- TIMING - 8M.xlsx');
+    workBook.write('belts- TIMING - AT10.xlsx');
 })();
