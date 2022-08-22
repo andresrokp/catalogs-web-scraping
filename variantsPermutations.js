@@ -166,13 +166,46 @@ function permutarTuercasISO(){
 }
 
 (()=>{
-    /*
-    diams:
-    
-    */
-    let diams_metric = [1.6,2,2.5,3,3.5,4,5,6,8,10,12,14,16,18,20,22,24,27,30,33,36,39,42,45,48,52,56,60,64];
-    let diams_ansi = ['1/4"','5/16"','3/8"','7/16"','1/2"','9/16"','5/8"','3/4"','7/8"','1"','1-1/8"','1-1/4"','1-1/2"','3/16"','1/4"','1-3/8"','1-5/8"','1-3/4"','1-7/8"','2"','2-1/2"','3"'];
-    let diams = diams_ansi.concat(diams_metric);
+
+    let begTime = performance.now()
     let tipos = ['AUTOSELLANTE','AVELLANADA','CONICA','DE HOMBRO','DE SEGURIDAD CON SOLAPA','DENTADA','EN CUÑA','ESFERICA','GROWER','ONDULADA','PLANA','RANURADA']
-    material = ['ACERO AL CARBONO','ACERO INOXIDABLE (A304)','ACERO INOXIDABLE (A316)','ALUMINIO','COBRE','GAUCHO','LATON','NYLON','PLASTICO','TEFLON','TITANIO','ZINC'];
+    let diams_metric = ['1.6mm','2mm','2.5mm','3mm','3.5mm','4mm','5mm','6mm','8mm','10mm','12mm','14mm','16mm','18mm','20mm','22mm','24mm','27mm','30mm','33mm','36mm','39mm','42mm','45mm','48mm','52mm','56mm','60mm','64mm'];
+    let diams_ansi = ['1/4"','5/16"','3/8"','7/16"','1/2"','9/16"','5/8"','3/4"','7/8"','1"','1-1/8"','1-1/4"','1-1/2"','3/16"','1-3/8"','1-5/8"','1-3/4"','1-7/8"','2"','2-1/2"','3"'];
+    let diams = diams_ansi.concat(diams_metric);
+    let materiales = ['ACERO AL CARBONO','ACERO INOXIDABLE 304','ACERO INOXIDABLE 316','ALUMINIO','COBRE','CAUCHO','LATON','NYLON','PLASTICO','TEFLON','TITANIO','ZINC'];
+    let acabados = ['CROMADO','GALVANIZADO EN CALIENTE','GALVANIZADO EN FRIO','PAVONADO','TROPICALIZADO','ZINCADO'];
+
+    let wb = new x4n.Workbook();
+    let ws = wb.addWorksheet('Arandelas');
+    let row = 2;
+
+    const bulkWrite = ({tipo,diam,material})=>{
+        ws.cell(row,1).string('ARANDELA')
+        ws.cell(row,2).string(tipo)
+        if(diam.includes('mm')) ws.cell(row,3).string('MM')
+        else ws.cell(row,3).string('pulgs')
+        ws.cell(row,4).string(diam)
+        ws.cell(row,5).string(material)
+    }
+
+    tipos.forEach((tipo) => {
+        materiales.forEach((material)=>{
+            if(material === 'ACERO AL CARBONO'){
+                acabados.forEach((acabado)=>{
+                    diams.forEach((diam)=>{
+                        bulkWrite({tipo,diam,material})
+                        ws.cell(row,6).string(acabado)
+                        row++
+                    })
+                })
+            }else{
+                diams.forEach((diam)=>{
+                    bulkWrite({tipo,diam,material})
+                    row++;
+                })
+            }
+        })            
+    })
+    wb.write('permArandelas.xlsx')
+    console.log('time :: ',performance.now()-begTime)
 })()
