@@ -1,7 +1,9 @@
 
+console.log("-\n-----\n---------\n-----\n-");
+
 let beg = performance.now();
 
-let stringArray = [
+let resourcesArray = [
     'RETENEDOR ACEITE 342,9X394,34X14,48MM   ',
     'RODAMIENTO ROD CONICO 1HIL NA329121 TIMK',
     'PACKING RELLENO C-2030 EN PP DIAM.1900* ',
@@ -18427,5 +18429,23 @@ let stringArray = [
     'TUBO T8 ESSENTIAL LED 600MM 9W PHILIPS',
 ];
 
-let str = ""
+let searchStr = "SENSOR INDUCTIVO M12"
 
+let resultDict = {}
+
+for(let rsr of resourcesArray){
+    for(let word of searchStr.split(" ")){
+        if(rsr.includes(word.toUpperCase())){
+            // console.log("resource ::", rsr)
+            // console.log("\tword ::", word)
+            resultDict[rsr] = (resultDict[rsr] || 0) + 1
+        } 
+    }
+}
+
+
+console.log(resultDict)
+
+console.log("-\n-----\n---------\n-----\n-");
+
+console.log("timing: ", performance.now() - beg)
