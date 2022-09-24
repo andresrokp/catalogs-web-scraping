@@ -9,6 +9,22 @@
  */
 
 function akapChecker(range){
-    return range.filter(n => n[0].includes(searchKey.toUpperCase())) // JSON.stringify(range)
+    let searchStr = searchKey.toUpperCase()
+    let resourcesArray = range.flat()
+    let resultDict = {}
+
+    for(let rsr of resourcesArray){
+        for(let word of searchStr.split(" ")){
+            if(rsr.includes(word)){
+                // console.log("resource ::", rsr)
+                // console.log("\tword ::", word)
+                resultDict[rsr] = (resultDict[rsr] || 0) + 1
+            } 
+        }
+    }
+
+    return Object.keys(resultDict)
+    // return range.filter(n => n[0].includes()) // JSON.stringify(range)
     // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
+    // return range.flat()
 }
