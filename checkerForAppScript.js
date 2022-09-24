@@ -8,6 +8,7 @@
  * @customfunction
  */
 
- function akapChecker(range){
-    return Object.values(range)
-  }
+function akapChecker(range){
+    return range.filter(n => n[0].includes(searchKey.toUpperCase())) // JSON.stringify(range)
+    // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
+}
