@@ -16,14 +16,16 @@ function akapChecker(range){
     for(let rsr of resourcesArray){
         for(let word of searchStr.split(" ")){
             if(rsr.includes(word)){
-                // console.log("resource ::", rsr)
-                // console.log("\tword ::", word)
                 resultDict[rsr] = (resultDict[rsr] || 0) + 1
             } 
         }
     }
+    
+    let keysArray = Object.keys(resultDict)
+    let valuesArray = Object.values(resultDict)
+    let resultMatrix = keysArray.map( (name, idx) => [name,valuesArray[idx]])
 
-    return Object.keys(resultDict)
+    return resultMatrix.sort( (pairA, pairB) => pairB[1] - pairA[1])
     // return range.filter(n => n[0].includes()) // JSON.stringify(range)
     // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
     // return range.flat()
