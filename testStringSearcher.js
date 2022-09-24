@@ -18429,7 +18429,7 @@ let resourcesArray = [
     'TUBO T8 ESSENTIAL LED 600MM 9W PHILIPS',
 ];
 
-let searchStr = "SENSOR INDUCTIVO M12"
+let searchStr = "union universal 1//2"
 
 let resultDict = {}
 
