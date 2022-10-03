@@ -13,7 +13,7 @@
     let searchStr = searchKey.toUpperCase().replace(",","")
     let resourcesArray = range.flat()
     let resultDict = {}
-  
+
     for(let rsr of resourcesArray){
         for(let word of searchStr.split(" ")){
             if(rsr.includes(word)){
@@ -21,15 +21,13 @@
             } 
         }
     }
-    let keysArray = Object.keys(resultDict)
-    let valuesArray = Object.values(resultDict)
-    let resultMatrix = keysArray.map( (name, idx) => [valuesArray[idx], name])
-  
-    return resultMatrix.sort( (pairA, pairB) => pairB[0] - pairA[0])
+
+    return dictToSortedMatrix(resultDict)
+
     // return range.filter(n => n[0].includes()) // JSON.stringify(range)
     // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
     // return range.flat()
-  }
+}
   
   /**
    * Contabiliza las primeras palabras de los items
@@ -40,17 +38,26 @@
    * @customfunction
    */
   
-  function classesCounter(range){
+function classesCounter(range){
     let resourcesArray = range.flat()
     let resultDict = {}
-  
+
     for(let rsr of resourcesArray){
         let className = rsr.split(",")[0].split(" ")[0]
         resultDict[className] = (resultDict[className] || 0) + 1
     }
-    let keysArray = Object.keys(resultDict)
-    let valuesArray = Object.values(resultDict)
-    let resultMatrix = keysArray.map( (name, idx) => [valuesArray[idx], name])
+
+    return dictToSortedMatrix(resultDict)
+}
   
+  /**
+  * Helpers
+  */
+  
+function dictToSortedMatrix(dict){
+    let keysArray = Object.keys(dict)
+    let valuesArray = Object.values(dict)
+    let resultMatrix = keysArray.map( (name, idx) => [valuesArray[idx], name])
+    
     return resultMatrix.sort( (pairA, pairB) => pairB[0] - pairA[0])
-  }
+}
