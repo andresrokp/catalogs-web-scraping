@@ -13,7 +13,7 @@
     let searchStr = searchKey.toUpperCase().replace(",","")
     let resourcesArray = range.flat()
     let resultDict = {}
-
+  
     for(let rsr of resourcesArray){
         for(let word of searchStr.split(" ")){
             if(rsr.includes(word)){
@@ -21,9 +21,9 @@
             } 
         }
     }
-
+    
     return dictToSortedMatrix(resultDict)
-
+  
     // return range.filter(n => n[0].includes()) // JSON.stringify(range)
     // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
     // return range.flat()
@@ -41,12 +41,12 @@
 function classesCounter(range){
     let resourcesArray = range.flat()
     let resultDict = {}
-
+  
     for(let rsr of resourcesArray){
         let className = rsr.split(",")[0].split(" ")[0]
         resultDict[className] = (resultDict[className] || 0) + 1
     }
-
+  
     return dictToSortedMatrix(resultDict)
 }
   
@@ -60,4 +60,18 @@ function dictToSortedMatrix(dict){
     let resultMatrix = keysArray.map( (name, idx) => [valuesArray[idx], name])
     
     return resultMatrix.sort( (pairA, pairB) => pairB[0] - pairA[0])
+}
+  
+  /**
+   * Extrae la referencia luego de la expresión "REF: "
+   * Por: andresrokp
+   *
+   * @param {element} a cell to take it's reference
+   * @return the reference in the element
+   * @customfunction
+   */
+  
+function referenceTaker(elem){
+    let array = elem.split("REF: ")
+    return array[array.length-1]
 }
