@@ -93,7 +93,7 @@
   }
   
   /**
-   * Trae la primera palabra de la frase"
+   * Trae la primera palabra de la frase
    * Por: andresrokp
    *
    * @param {element} a cell to take it's reference
@@ -103,6 +103,39 @@
   
   function firstWordParent(elem){
     return elem.trim().split(" ")[0].replaceAll(",","")
+  }
+  
+  /**
+   * Trae el código del recurso generico
+   * Por: andresrokp
+   *
+   * @param {element} a cell to take it's reference
+   * @return generic resource code
+   * @customfunction
+   */
+  
+  function getGenericResourceCode(elem){
+    return genericResourceDict[elem] || "-";
+  }
+  
+  /**
+   * Contabiliza y concatena el codigo de los elementos en una lista
+   * Por: andresrokp
+   *
+   * @param {column range} a list of firstWords to do shit
+   * @return a column array with counted and concatenated codes
+   * @customfunction
+   */
+  
+  function progressiveCounterGenerator(rangeOfFamilies){
+    let counterDict = {}
+    let BASIC_COUNTER_STRING = "00000"
+    let codesList = rangeOfFamilies.map( i => {
+      counterDict[i] = (counterDict[i] || 0) + 1
+  
+      return BASIC_COUNTER_STRING + counterDict[i]
+    })
+    return codesList
   }
   
   let genericResourceDict = {
