@@ -127,13 +127,15 @@
    * @customfunction
    */
   
-  function progressiveCounterGenerator(rangeOfFamilies){
+  function counterCodeGenerator(rangeOfFamilies){
     let counterDict = {}
     let BASIC_COUNTER_STRING = "00000"
     let codesList = rangeOfFamilies.map( i => {
       counterDict[i] = (counterDict[i] || 0) + 1
-  
-      return BASIC_COUNTER_STRING + counterDict[i]
+      familyCode = genericResourceDict[i] || "-"
+      actualResourceCode = `${BASIC_COUNTER_STRING}${counterDict[i]}`.slice(-5)
+      completeCode = `${familyCode}-${actualResourceCode}`
+      return completeCode
     })
     return codesList
   }
