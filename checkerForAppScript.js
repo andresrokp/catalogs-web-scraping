@@ -27,7 +27,7 @@
     // return range.filter(n => n[0].includes()) // JSON.stringify(range)
     // return [["a",1],["b",2],["c",3]];   --->>> succesful data structure for get a matrix
     // return range.flat()
-}
+  }
   
   /**
    * Contabiliza las primeras palabras de los items
@@ -38,7 +38,7 @@
    * @customfunction
    */
   
-function classesCounter(range){
+  function classesCounter(range){
     let resourcesArray = range.flat()
     let resultDict = {}
   
@@ -48,19 +48,19 @@ function classesCounter(range){
     }
   
     return dictToSortedMatrix(resultDict)
-}
+  }
   
   /**
-  * Helpers
+  * Helper
   */
   
-function dictToSortedMatrix(dict){
+  function dictToSortedMatrix(dict){
     let keysArray = Object.keys(dict)
     let valuesArray = Object.values(dict)
     let resultMatrix = keysArray.map( (name, idx) => [valuesArray[idx], name])
     
     return resultMatrix.sort( (pairA, pairB) => pairB[0] - pairA[0])
-}
+  }
   
   /**
    * Extrae la referencia luego de la expresión "REF: "
@@ -71,7 +71,24 @@ function dictToSortedMatrix(dict){
    * @customfunction
    */
   
-function referenceTaker(elem){
+  function referenceTaker(elem){
     let array = elem.split("REF: ")
     return array[array.length-1]
-}
+  }
+  
+  /**
+   * Trae la mayor coincidencia de tokens"
+   * Por: andresrokp
+   *
+   * @param {element} a cell to take it's reference
+   * @param {range} a cell to take it's reference
+   * @return the reference in the element
+   * @customfunction
+   */
+  
+  function bestMatchIdentifyer(range, searchKey){
+    let cleanKey = searchKey.trim().replaceAll("  "," ").replaceAll("   "," ")
+    let counterMatrix = afrpChecker(range,cleanKey)
+    return [[...counterMatrix[0],...counterMatrix[1],...counterMatrix[2]]];
+  }
+  
