@@ -9,7 +9,7 @@
  * @customfunction
  */
 
- function afrpChecker(range,searchKey){
+ function andresChecker(range,searchKey){
     let searchStr = searchKey.toUpperCase().replace(",","")
     let resourcesArray = range.flat()
     let resultDict = {}
@@ -138,6 +138,18 @@
       return completeCode
     })
     return codesList
+  }
+
+  function andresConcatener(range) {
+    parts = range[0]
+    nameStr = parts[0]
+    if(parts[1] || parts[2]) nameStr += ", REF:"
+    if(parts[1]) nameStr += ` ${parts[1]}`
+    if(parts[2]) nameStr += ` ${parts[2]}`
+    if(parts[3] || parts[4]) nameStr += ", NUM PARTE:"
+    if(parts[3]) nameStr += ` ${parts[3]}`
+    if(parts[4]) nameStr += ` ${parts[4]}`
+    return nameStr.toUpperCase()
   }
   
   let genericResourceDict = {
